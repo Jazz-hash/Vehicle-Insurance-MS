@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace VIMS
+namespace CFMS
 {
     public class FilterConfig
     {

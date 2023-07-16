@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace VIMS.Controllers
+namespace CFMS.Controllers
 {
     [Authorize(Roles ="Admin")]
     public class AdminController : Controller

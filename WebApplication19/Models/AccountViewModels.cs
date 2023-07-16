@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace VIMS.Models
+namespace CFMS.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

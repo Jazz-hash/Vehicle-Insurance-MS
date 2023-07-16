@@ -8,23 +8,19 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using VIMS.Models;
-using WebApplication19.Models;
 
-namespace VIMS.Models
+namespace CFMS.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
         public DateTime DateOfJoining { get; set; }
-        //public string PhoneNumber { get; set; }
-        public ICollection<PolicyType> PolicyTypes { get; set; }
-        public ICollection<VehicleInformation> VehicleInformations { get; set; }
-        public ICollection<CustomerPolicyRecord> CustomerPolicyRecord { get; set; }
-        public ICollection<Estimate> Estimates { get; set; }
-        public ICollection<ClaimDetail> ClaimDetails { get; set; }
-        public ICollection<Expense> Expenses { get; set; }
+        public string CanvasAPI { get; set; }
+        public string InstructorProgram { get; set; }
+        public ICollection<Log> Logs { get; set; }
+        public ICollection<CourseFile> CourseFiles { get; set; }
+
 
 
 
@@ -56,15 +52,9 @@ namespace VIMS.Models
             modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
         }
 
-        public virtual DbSet<VehicleInformation> VehicleInformations { get; set; }
-        public virtual DbSet<Estimate> Estimates { get; set; }
-        public virtual DbSet<CustomerPolicyRecord> CustomerPolicyRecords { get; set; }
-        public virtual DbSet<CustomerBillingInformation> CustomerBillingInformations { get; set; }
-        public virtual DbSet<PolicyType> PolicyTypes { get; set; }
-        public virtual DbSet<ClaimDetail> ClaimDetails { get; set; }
-        public virtual DbSet<Expense> Expenses { get; set; }
-        public virtual DbSet<VehicleImages> VehicleImages { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
+        public virtual DbSet<CourseFile> CourseFiles { get; set; }
         public IEnumerable ApplicationUsers { get; internal set; }
     }
 }

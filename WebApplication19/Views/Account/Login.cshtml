@@ -1,4 +1,4 @@
-﻿@using VIMS.Models
+﻿@using CFMS.Models
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
@@ -7,17 +7,26 @@
 
 <div class="col-lg-6 d-flex align-items-center justify-content-center">
     <div class="auth-form-transparent text-left p-3">
-        <div class="brand-logo">
-            <h1 style="font-family:Pacifico">Vims</h1>
+        <div class="brand-logo text-center">
+            <h1 style="font-family:Pacifico">CFMS</h1>
         </div>
+        <div class="row mt-2">
+            <div class="col-6">
+                <img class="float-right" src="~/Content/images/auth/HU logo.jpg" height="100px" />
+            </div>
+            <div class="col-6" style="border-left: 1px solid #000">
+                <img class="float-left" src="~/Content/images/auth/HU logo.jpg" height="100px" />
+            </div>
+        </div>
+        <br />
+        <br />
         <h4>Welcome back!</h4>
-        <h6 class="font-weight-light">Happy to see you again!</h6>
-        @using (Html.BeginForm(null, null, FormMethod.Post, htmlAttributes: new { @class = "pt-3" }))
+        @using (Html.BeginForm(null, null, FormMethod.Post, htmlAttributes: new { @class = "pt-2" }))
         {
             @Html.AntiForgeryToken()
             if (ViewBag.Errors == true)
             {
-                <div class="alert alert-danger pb-0" >
+                <div class="alert alert-danger pb-0">
                     @Html.ValidationSummary(true, "", new { @class = "" })
                 </div>
 
@@ -48,7 +57,7 @@
             <div class="my-2 d-flex justify-content-between align-items-center">
                 <div class="form-check">
                     <label class="form-check-label text-muted">
-                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-control form-check-input" })
                         Keep me signed in
                     </label>
                 </div>
@@ -57,13 +66,13 @@
             <div class="my-3">
                 <input class="btn btn-block btn-dark btn-lg font-weight-medium auth-form-btn" type="submit" value="LOGIN" />
             </div>
-            <div class="text-center mt-4 font-weight-light">
+            <div class="text-center mt-4 font-weight-light text-dark">
                 Don't have an account? <a href="/Account/Register" class="text-primary">Create</a>
             </div>
         }
 
     </div>
 </div>
-<div class="col-lg-6 login-half-bg d-flex flex-row shadow-lg" style="background-image: url(../../Content/images/auth/IMG_32785.jpg);">
-    <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; 2018  All rights reserved.</p>
+<div class="col-lg-6 login-half-bg d-flex flex-row shadow-lg" style="background-image: url(../../Content/images/auth/background.jpg);">
+    <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; @DateTime.Now.Year  All rights reserved.</p>
 </div>

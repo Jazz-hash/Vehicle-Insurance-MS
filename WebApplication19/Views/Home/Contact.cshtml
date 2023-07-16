@@ -1,4 +1,4 @@
-﻿@model VIMS.Models.Contact
+﻿@model CFMS.Models.Contact
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
@@ -10,103 +10,88 @@
     <br />
 </div>
 
-<!-- Breadcrumb -->
-<div class="breadcrumb-area" data-bgimage="../../../Scripts/assets/images/bg/breadcrumb-bg-1.jpg" style="background-image:url('../../../Scripts/assets/images/bg/breadcrumb-bg-1.jpg')" data-black-overlay="4">
-    <div class="container">
-        <div class="in-breadcrumb">
-            <div class="row align-items-center">
-                <div class="col">
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li>Contact</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h6>Contact</h6>
-                </div>
+@{
+    ViewBag.Title = "ABOUT US";
+    ViewBag.Message = "What we are !!";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+
+
+}
+
+<div class="col-lg-6 d-flex align-items-center justify-content-center">
+    <div class="auth-form-transparent text-left p-3">
+        <div class="brand-logo text-center">
+            <h1 style="font-family:Pacifico">CFMS</h1>
+        </div>
+        <div class="row mt-2">
+            <div class="col-6">
+                <img class="float-right" src="~/Content/images/auth/HU logo.jpg" height="100px" />
+            </div>
+            <div class="col-6" style="border-left: 1px solid #000">
+                <img class="float-left" src="~/Content/images/auth/HU logo.jpg" height="100px" />
             </div>
         </div>
+        <br />
+        <br />
+        @if (ViewBag.Success != "")
+        {
+            <div class="alert alert-success">
+                <strong>Success !</strong> Our admins will reach out to you soon.
+            </div>
+        }
+        <form id="contact-form">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="input-box">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @name = "", @required = "required", placeholder = "First Name *" } })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="input-box">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @name = "", @required = "required", placeholder = "Last Name *" } })
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 mt-2">
+                        <div class="input-box">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @name = "", @required = "required", placeholder = "Email *" } })
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 mt-2">
+                        <div class="input-box">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @name = "", @required = "required", placeholder = "Phone *" } })
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mt-2">
+                        <div class="input-box">
+                            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", @name = "", @required = "required", placeholder = "Your Message *" })
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-submit-btn text-center mt-4">
+                    <input type="submit" class="btn w-100 btn-dark" value="Submit Now" />
+                </div>
+            }
+
+        </form>
+        <div class="my-3">
+            <a class="btn btn-block btn-outline-dark btn-lg font-weight-medium auth-form-btn" href="/Account/Login">Go to Login Page</a>
+        </div>
+        <div class="text-center mt-4 font-weight-light text-dark">
+            Don't have an account? <a href="/Account/Register" class="text-primary">Create</a>
+        </div>
+
+
     </div>
 </div>
-<!--// Breadcrumb -->
-<!-- Page Conttent -->
-<main class="page-content">
+<div class="col-lg-6 login-half-bg d-flex flex-row shadow-lg" style="background-image: url(../../Content/images/auth/background.jpg);">
+    <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; @DateTime.Now.Year  All rights reserved.</p>
+</div>
 
-    <!-- Contact Area -->
-    <div class="contact-area in-section section-padding-lg">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section-title text-center">
-                        <h6>CONTACT US AT ANY TIME</h6>
-                        <h2>Contact Us</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
 
-                <div class="col-lg-12">
-                    <!-- contact-form-warp Start -->
-                    <div class="contact-form-warp">
-                        @if (ViewBag.Success != "")
-                        {
-                            <div class="alert alert-success">
-                                <strong>Success !</strong>dsadasd
-                            </div>
-                        }
-                        @*<div class="alert alert-success">
-                            <strong>Success !</strong>dsadasd
-                        </div>*@
-                        <form id="contact-form">
-
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="input-box">
-                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "", @name = "", @required = "required", placeholder = "First Name *" } })
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="input-box">
-                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "", @name = "", @required = "required", placeholder = "Last Name *" } })
-
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="input-box">
-                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "", @name = "", @required = "required", placeholder = "Email *" } })
-
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <div class="input-box">
-                                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "", @name = "", @required = "required", placeholder = "Phone *" } })
-
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="input-box">
-                                            @Html.TextAreaFor(model => model.Message, new { @class = "", @name = "", @required = "required", placeholder = "Your Message *" })
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="contact-submit-btn text-center">
-                                    <input type="submit" class="btn btn-rounded btn-dark" value="Submit Now" />
-                                </div>
-                            }
-
-                        </form>
-                    </div>
-                    <!-- contact-form-warp End -->
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <!--// Services Area -->
-
-</main>
-<!--// Page Conttent -->

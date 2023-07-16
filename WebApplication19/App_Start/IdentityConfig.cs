@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using VIMS.Models;
+using CFMS.Models;
 
-namespace VIMS
+namespace CFMS
 {
     public class EmailService : IIdentityMessageService
     {

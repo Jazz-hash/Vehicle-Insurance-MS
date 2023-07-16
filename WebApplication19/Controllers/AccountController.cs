@@ -10,9 +10,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MimeKit;
-using VIMS.Models;
+using CFMS.Models;
+using System.Web.Security;
 
-namespace VIMS.Controllers
+namespace CFMS.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -100,15 +101,30 @@ namespace VIMS.Controllers
                             ViewBag.Errors = false;
 
                             SignInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                            if (User.IsInRole("Employee"))
+
+
+                            ApplicationDbContext db2 = new ApplicationDbContext();
+                            if (user != null)
+                            {
+                                Log data = new Log();
+                                data.Action = "User Login";
+                               data.ApplicationUserId = user.Id;
+                                data.Timestamp = DateTime.Now;
+
+                                db.Logs.Add(data);
+                                await db.SaveChangesAsync();
+                            }
+                            
+
+                            //db.l
+
+
+                            if (roleName == "Admin")
                             {
                                 return RedirectToAction("Dashboard", "Home");
 
                             }
-
-                            return RedirectToAction("Index", "Manage");
-
-
+                            return RedirectToAction("TeachersDashboard", "Home");
 
                         }
                         else
@@ -207,7 +223,7 @@ namespace VIMS.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id, "Employee");
+                    UserManager.AddToRole(user.Id, "Teacher");
                     ViewBag.Errors = false;
                     ViewBag.Email = model.Email;
 
@@ -220,24 +236,32 @@ namespace VIMS.Controllers
                     }, protocol: HttpContext.Request.Url.Scheme);
                     ViewBag.token = ctokenlink;
 
-                    var message = new MimeMessage();
-                    message.From.Add(new MailboxAddress("Confirm your account", "travellingdiaries2019@gmail.com"));
-                    message.To.Add(new MailboxAddress("naren", model.Email));
-                    message.Subject = "Confirm your account";
-                    message.Body = new TextPart("plain")
-                    {
-                        Text = "Please confirm your account by clicking the following link \n" + ctokenlink,
-                    };
-                    using (var client = new SmtpClient())
-                    {
-                        client.Connect("smtp.gmail.com", 587, false);
-                        client.Authenticate("travellingdiaries2019@gmail.com", "Travel1234");
-                        client.Send(message);
-                        client.Disconnect(true);
-                    }
+                    //var message = new MimeMessage();
+                    //message.From.Add(new MailboxAddress("Confirm your account", "travellingdiaries2019@gmail.com"));
+                    //message.To.Add(new MailboxAddress("naren", model.Email));
+                    //message.Subject = "Confirm your account";
+                    //message.Body = new TextPart("plain")
+                    //{
+                    //    Text = "Please confirm your account by clicking the following link \n" + ctokenlink,
+                    //};
+                    //using (var client = new SmtpClient())
+                    //{
+                    //    client.Connect("smtp.gmail.com", 587, false);
+                    //    client.Authenticate("travellingdiaries2019@gmail.com", "Travel1234");
+                    //    client.Send(message);
+                    //    client.Disconnect(true);
+                    //}
 
 
                     //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + ctokenlink + "\">here</a>");
+                    Log log = new Log()
+                    {
+                        Action = "User Registration",
+                        ApplicationUserId = user.Id,
+                        Timestamp = DateTime.Now,
+                    };
+                    db.Logs.Add(log);
+                    db.SaveChanges();
 
                     return View(model);
 
@@ -309,6 +333,14 @@ namespace VIMS.Controllers
                     client.Send(message);
                     client.Disconnect(true);
                 }
+                Log log = new Log()
+                {
+                    Action = "Forgot Password Requested",
+                    ApplicationUserId = user.Id,
+                    Timestamp = DateTime.Now,
+                };
+                db.Logs.Add(log);
+                db.SaveChanges();
                 //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
@@ -351,11 +383,20 @@ namespace VIMS.Controllers
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            Log log = new Log()
+            {
+                Action = "Reset Password",
+                ApplicationUserId = user.Id,
+                Timestamp = DateTime.Now,
+            };
+            db.Logs.Add(log);
+            db.SaveChanges();
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
             AddErrors(result);
+          
             return View();
         }
 
@@ -389,7 +430,16 @@ namespace VIMS.Controllers
                 return View("Error");
             }
             var userFactors = await UserManager.GetValidTwoFactorProvidersAsync(userId);
+            var user = await UserManager.FindByIdAsync(userId); 
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
+            Log log = new Log()
+            {
+                Action = "Reset Code Requested",
+                ApplicationUserId = userId,
+                Timestamp = DateTime.Now,
+            };
+            db.Logs.Add(log);
+            db.SaveChanges();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
@@ -485,9 +535,20 @@ namespace VIMS.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public async Task<ActionResult> LogOff()
         {
+
+            var user = await UserManager.FindByNameAsync(User.Identity.Name);
+            Log log = new Log()
+            {
+                Action = "User Logout",
+                ApplicationUserId = user.Id,
+                Timestamp = DateTime.Now,
+            };
+            db.Logs.Add(log);
+            db.SaveChanges();
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
             return RedirectToAction("Index", "Home");
         }
 

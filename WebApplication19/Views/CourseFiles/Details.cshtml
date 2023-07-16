@@ -1,0 +1,104 @@
+﻿@model CFMS.Models.CourseFile
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card shadow-lg">
+    <div class="card-body">
+
+        <h2>Course File Details</h2>
+
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.ApplicationUser.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ApplicationUser.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Term)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Term)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Url)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Url)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CourseProgram)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CourseProgram)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CourseType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CourseType)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CourseSection)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CourseSection)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Created)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Created)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Updated)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Updated)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+    </div>
+</div>

@@ -1,335 +1,39 @@
 ﻿@{
     ViewBag.Title = "ABOUT US";
     ViewBag.Message = "What we are !!";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+
 
 }
-<div class="bg-dark">
-    <br />
-    <br />
-    <br />
-    <br />
-</div>
-<!-- Breadcrumb -->
-<div class="breadcrumb-area" data-bgimage="../../../Scripts/assets/images/bg/breadcrumb-bg-1.jpg" data-black-overlay="4">
-    <div class="container">
-        <div class="in-breadcrumb">
-            <div class="row align-items-center">
-                <div class="col">
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li>About Us</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <h6>About Us</h6>
-                </div>
+
+<div class="col-lg-6 d-flex align-items-center justify-content-center">
+    <div class="auth-form-transparent text-left p-3">
+        <div class="brand-logo text-center">
+            <h1 style="font-family:Pacifico">CFMS</h1>
+        </div>
+        <div class="row mt-2">
+            <div class="col-6">
+                <img class="float-right" src="~/Content/images/auth/HU logo.jpg" height="100px" />
+            </div>
+            <div class="col-6" style="border-left: 1px solid #000">
+                <img class="float-left" src="~/Content/images/auth/HU logo.jpg" height="100px" />
             </div>
         </div>
+        <br />
+        <br />
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse rutrum ipsum nisi, malesuada tempor diam fermentum eu. Etiam accumsan orci purus, non posuere diam faucibus vitae. Etiam accumsan eros dui, eget tristique urna fringilla et. Sed tortor massa, pellentesque eu placerat vel, fringilla a turpis. Praesent aliquam enim ut risus cursus mollis. Donec finibus euismod vehicula. Mauris vitae arcu convallis nibh rutrum tempor eget vitae leo. Vestibulum semper placerat lacus vitae hendrerit. Pellentesque lacinia laoreet odio at semper. Nam quis sapien lacus.
+        </p>
+        <div class="my-3">
+            <a class="btn btn-block btn-dark btn-lg font-weight-medium auth-form-btn" href="/Account/Login">Go to Login Page</a>
+        </div>
+        <div class="text-center mt-4 font-weight-light text-dark">
+            Don't have an account? <a href="/Account/Register" class="text-primary">Create</a>
+        </div>
+
+
     </div>
 </div>
-<!--// Breadcrumb -->
-<!-- Page Conttent -->
-<main class="page-content">
-
-
-
-    <!-- About Area -->
-    <div class="about-area in-section section-padding-bottom-lg bg-white">
-        <div class="container custom-container">
-            <div class="row no-gutters">
-                <div class="col-xl-6 col-lg-12">
-                    <div class="about-content heightmatch">
-                        <h6>ABOUT US </h6>
-                        <h2>Something about us</h2>
-                        <h4>
-                            We are leading international Insurance service
-                            provider to make your happy life .
-                        </h4>
-                        <ul class="ul-style-1">
-                            <li>A perfect policy for your need.</li>
-                            <li>Our algorithm divides our rate percentage with your vehicle rate giving an affordable and better rate to get a policy.</li>
-                            <li>
-                                Be comfortable with our genrated policies and bills.
-                            </li>
-                            <li>Claim it whenever you need using our professional site.</li>
-                        </ul>
-                        <a href="/PolicyTypes/" class="in-button">Try It <i class="fa fa-chevron-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6">
-                    <div class="heightmatch">
-                        <div class="in-videobox">
-                            <img src="../../../Scripts/assets/images/other/videbox-image-1.jpg" alt="man with umbrella">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6">
-                    <div class="counterbox heightmatch" data-bgimage="assets/images/other/counterbox-bg.jpg" data-secondary-overlay="9">
-                        <div class="counterbox-inner">
-                            <div class="counterbox-block">
-                                <div class="counterbox-blockinner">
-                                    <h2><span class="counter">95</span>%</h2>
-                                    <h6>Satisfaction</h6>
-                                </div>
-                            </div>
-                            <div class="counterbox-block">
-                                <div class="counterbox-blockinner">
-                                    <h2><span class="counter">@ViewBag.CustomersCount</span></h2>
-                                    <h6>New Clients</h6>
-                                </div>
-                            </div>
-                            <div class="counterbox-block">
-                                <div class="counterbox-blockinner">
-                                    <h2><span class="counter">@ViewBag.VehiclesCount</span></h2>
-                                    <h6>Vehicles <br />Registered</h6>
-                                </div>
-                            </div>
-                            <div class="counterbox-block">
-                                <div class="counterbox-blockinner">
-                                    <h2><span class="counter">@ViewBag.CustomerPoliciesCount</span></h2>
-                                    <h6>Verified Policies</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-12">
-                    <div class="insurencebox heightmatch">
-                        <br />
-                        <br />
-                        <h4>Request a free call back</h4>
-                        <h2>Have a vehicle to protect?</h2>
-                        <p>
-                            We are here to help and assist you. Just login and register your vehicle, select a policy that you feel comfortable and it's done.<br />
-                            Just as easy as pie !
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--// About Area -->
-    <!-- Callback Area -->
-    <div class="testimonial-area-two in-section section-padding-lg bg-image-4" data-secondary-overlay="9">
-        <div class="container">
-            <div class="">
-                <div class=" row testimonial-slider-2 in-slidearrow-1">
-                    <div class="slider-item">
-                        <!-- Single Testimonial -->
-                        <div class="testimonial">
-                            <div class="testimonial-header">
-                                <div class="testimonial-image">
-                                    <img src="../../../Scripts/assets/images/testimonial/testimonial-author-1.png" alt="testimonial author">
-                                </div>
-                                <span><img src="../../../Scripts/assets/images/icons/title-bottom-shape.png" alt="shape"></span>
-                            </div>
-                            <div class="testimonial-content">
-                                <p>
-                                    Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure abore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud dolor in reprehenderit
-                                </p>
-                                <h5>Tatum Hauck</h5>
-                                <h6>Consultant</h6>
-                            </div>
-                            <ul class="testimonial-socialicons">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                        <!--// Single Testimonial -->
-                    </div>
-
-                    <div class="slider-item">
-                        <!-- Single Testimonial -->
-                        <div class="testimonial">
-                            <div class="testimonial-header">
-                                <div class="testimonial-image">
-                                    <img src="../../../Scripts/assets/images/testimonial/testimonial-author-1.png" alt="testimonial author">
-                                </div>
-                                <span><img src="../../../Scripts/assets/images/icons/title-bottom-shape.png" alt="shape"></span>
-                            </div>
-                            <div class="testimonial-content">
-                                <p>
-                                    Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure abore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud dolor in reprehenderit
-                                </p>
-                                <h5>Lincoln Schiller</h5>
-                                <h6>Consultant</h6>
-                            </div>
-                            <ul class="testimonial-socialicons">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                        <!--// Single Testimonial -->
-                    </div>
-
-                    <div class="slider-item">
-                        <!-- Single Testimonial -->
-                        <div class="testimonial">
-                            <div class="testimonial-header">
-                                <div class="testimonial-image">
-                                    <img src="../../../Scripts/assets/images/testimonial/testimonial-author-1.png" alt="testimonial author">
-                                </div>
-                                <span><img src="../../../Scripts/assets/images/icons/title-bottom-shape.png" alt="shape"></span>
-                            </div>
-                            <div class="testimonial-content">
-                                <p>
-                                    Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure abore et dolore magna
-                                    aliqua. Ut enim ad minim veniam, quis nostrud dolor in reprehenderit
-                                </p>
-                                <h5>Theron Gottlieb</h5>
-                                <h6>Consultant</h6>
-                            </div>
-                            <ul class="testimonial-socialicons">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                        <!--// Single Testimonial -->
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--// Callback Area -->
-    <!-- Team Members -->
-    <div class="team-members-area in-section bg-white section-padding-bottom-lg">
-        <div class="container">
-            <div class="team-member-slider in-slidearrow-2">
-
-                <div class="team-member-slider-item">
-                    <!-- Single Team Member -->
-                    <div class="in-member">
-                        <div class="in-member-image">
-                            <img src="../../../Scripts/assets/images/team/team-member-1.jpg" alt="team member">
-                        </div>
-                        <div class="in-member-content">
-                            <ul class="in-member-social">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                            <h5>Manchester Kolin</h5>
-                            <p>Manchester Kolin</p>
-                        </div>
-                    </div>
-                    <!--// Single Team Member -->
-                </div>
-
-                <div class="team-member-slider-item">
-                    <!-- Single Team Member -->
-                    <div class="in-member">
-                        <div class="in-member-image">
-                            <img src="../../../Scripts/assets/images/team/team-member-2.jpg" alt="team member">
-                        </div>
-                        <div class="in-member-content">
-                            <ul class="in-member-social">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                            <h5>Manchester Kolin</h5>
-                            <p>Manchester Kolin</p>
-                        </div>
-                    </div>
-                    <!--// Single Team Member -->
-                </div>
-
-                <div class="team-member-slider-item">
-                    <!-- Single Team Member -->
-                    <div class="in-member">
-                        <div class="in-member-image">
-                            <img src="../../../Scripts/assets/images/team/team-member-3.jpg" alt="team member">
-                        </div>
-                        <div class="in-member-content">
-                            <ul class="in-member-social">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                            <h5>Manchester Kolin</h5>
-                            <p>Manchester Kolin</p>
-                        </div>
-                    </div>
-                    <!--// Single Team Member -->
-                </div>
-
-                <div class="team-member-slider-item">
-                    <!-- Single Team Member -->
-                    <div class="in-member">
-                        <div class="in-member-image">
-                            <img src="../../../Scripts/assets/images/team/team-member-1.jpg" alt="team member">
-                        </div>
-                        <div class="in-member-content">
-                            <ul class="in-member-social">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                            <h5>Manchester Kolin</h5>
-                            <p>Manchester Kolin</p>
-                        </div>
-                    </div>
-                    <!--// Single Team Member -->
-                </div>
-
-                <div class="team-member-slider-item">
-                    <!-- Single Team Member -->
-                    <div class="in-member">
-                        <div class="in-member-image">
-                            <img src="../../../Scripts/assets/images/team/team-member-2.jpg" alt="team member">
-                        </div>
-                        <div class="in-member-content">
-                            <ul class="in-member-social">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                            <h5>Manchester Kolin</h5>
-                            <p>Manchester Kolin</p>
-                        </div>
-                    </div>
-                    <!--// Single Team Member -->
-                </div>
-
-                <div class="team-member-slider-item">
-                    <!-- Single Team Member -->
-                    <div class="in-member">
-                        <div class="in-member-image">
-                            <img src="../../../Scripts/assets/images/team/team-member-3.jpg" alt="team member">
-                        </div>
-                        <div class="in-member-content">
-                            <ul class="in-member-social">
-                                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                            </ul>
-                            <h5>Manchester Kolin</h5>
-                            <p>Manchester Kolin</p>
-                        </div>
-                    </div>
-                    <!--// Single Team Member -->
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!--// Team Members -->
-
-</main>
-<!--// Page Conttent -->
+<div class="col-lg-6 login-half-bg d-flex flex-row shadow-lg" style="background-image: url(../../Content/images/auth/background.jpg);">
+    <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy; @DateTime.Now.Year  All rights reserved.</p>
+</div>

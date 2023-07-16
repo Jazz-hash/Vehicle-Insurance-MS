@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace VIMS
+namespace CFMS
 {
     public class BundleConfig
     {
@@ -42,10 +42,7 @@ namespace VIMS
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/horizontal-layout/style.css",
-                      "~/Content/vendors/css/vendor.bundle.base.css",
-                      "~/Content/vendors/css/vendor.bundle.addons.css",
-                      "~/Content/animate.css",
-                      "~/Content/jquery.datetimepicker.css"
+                      "~/Content/horizontal-layout/font-awesome.min.css"
                       ));
         }
     }

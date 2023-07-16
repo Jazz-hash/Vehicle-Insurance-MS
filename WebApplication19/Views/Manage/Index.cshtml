@@ -1,4 +1,4 @@
-﻿@model VIMS.Models.IndexViewModel
+﻿@model CFMS.Models.IndexViewModel
 @{
     ViewBag.Title = "Manage";
 }
@@ -20,14 +20,8 @@
                                     <i class="mdi mdi-home-outline text-info float-right "><i class="fas fa-user-tie h3"></i></i>
                                 </a>
                             </li>
-                            @if (User.IsInRole("Employee"))
+                            @if (User.IsInRole("Admin"))
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab-vertical" data-toggle="tab" href="#policies" role="tab" aria-controls="contact-2" aria-selected="false">
-                                        Expense Details
-                                        <i class="mdi mdi-email-outline text-success float-right "><i class="fas fa-dollar-sign  h3"></i></i>
-                                    </a>
-                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="contact-tab-vertical" data-toggle="tab" href="#reports" role="tab" aria-controls="contact-2" aria-selected="false">
                                         Reports
@@ -35,28 +29,6 @@
                                     </a>
                                 </li>
                             }
-                            @if (User.IsInRole("Customer"))
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab-vertical" data-toggle="tab" href="#profile-2" role="tab" aria-controls="profile-2" aria-selected="false">
-                                        My Vehicles
-                                        <i class="mdi mdi-account-outline text-dark float-right "><i class="fas fa-car h3" aria-hidden="true"></i></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab-vertical" data-toggle="tab" href="#contact-2" role="tab" aria-controls="contact-2" aria-selected="false">
-                                        My Applications
-                                        <i class="mdi mdi-email-outline text-success float-right "><i class="fas fa-file-contract  h3"></i></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="contact-tab-vertical" data-toggle="tab" href="#claim-2" role="tab" aria-controls="contact-2" aria-selected="false">
-                                        My Claims
-                                        <i class="mdi mdi-email-outline text-danger float-right "><i class="fas fa-exclamation-triangle h4"></i></i>
-                                    </a>
-                                </li>
-                            }
-
 
 
                         </ul>
@@ -154,126 +126,6 @@
                                         </dd>*@
                                 </dl>
                             </div>
-                            <div class="tab-pane fade" id="profile-2" role="tabpanel" aria-labelledby="profile-tab-vertical">
-                                <div class="text-center">
-                                    <div class="text-center h1" style="font-family:Pacifico">
-                                        My Vehicles
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="offset-10 col">
-                                        <a href="/VehicleInformations/Create/" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i></a>
-                                    </div>
-                                </div>
-                                <div>
-                                    @{
-
-                                        string[] ids = ViewBag.vehicleIds.Split(':');
-                                        string[] names = ViewBag.vehicleNames.Split(':');
-                                    }
-                                    <br />
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Vehicle</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{
-                                                if (ids[0] == "" && names[0] == "")
-                                                {
-                                                    <tr>
-                                                        <td colspan=3 class="text-center">No vehicles found !!</td>
-                                                    </tr>
-                                                }
-                                                else
-                                                {
-                                                    if (ids.Length == names.Length)
-                                                    {
-                                                        for (int i = 0; i < ids.Length; i++)
-                                                        {
-                                                            <tr>
-                                                                <td>@ids[i]</td>
-                                                                <td>@names[i]</td>
-                                                                <td>
-                                                                    <a href="/Vehicleinformations/Details/@ids[i]/">View <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        }
-                                                    }
-                                                }
-
-                                            }
-
-                                        </tbody>
-                                    </table>
-                                    <br />
-                                    <a class="float-right mr-4" href="/Vehicleinformations/">View all <i class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="contact-2" role="tabpanel" aria-labelledby="contact-tab-vertical">
-                                <div class="text-center">
-                                    <div class="text-center h1" style="font-family:Pacifico">
-                                        My Applications
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="offset-10 col">
-                                        <a href="/CustomerPolicyRecords/Create/" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i></a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <br />
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Policy Number</th>
-                                                <th>Vehicle Name</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{
-
-                                                string[] p_ids = ViewBag.policyIds.Split(':');
-                                                string[] p_numbers = ViewBag.policyNumbers.Split(':');
-                                                string[] p_vehicles = ViewBag.policyVehicleNames.Split(':');
-                                                if (p_ids[0] == "" && p_numbers[0] == "" && p_vehicles[0] == "")
-                                                {
-                                                    <tr>
-                                                        <td colspan=4 class="text-center">No applications found !!</td>
-                                                    </tr>
-                                                }
-                                                else
-                                                {
-                                                    if (p_ids.Length == p_numbers.Length && p_numbers.Length == p_vehicles.Length)
-                                                    {
-                                                        for (int i = 0; i < p_ids.Length; i++)
-                                                        {
-                                                            <tr>
-                                                                <td>@p_ids[i]</td>
-                                                                <td>@p_numbers[i]</td>
-                                                                <td>@p_vehicles[i]</td>
-                                                                <td>
-                                                                    <a href="/CustomerPolicyRecords/Details/@ids[i]/">View <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                        </tbody>
-                                    </table>
-                                    <br />
-                                    <a class="float-right mr-4" href="/CustomerPolicyRecords/">View all <i class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
                             <div class="tab-pane fade" id="reports" role="tabpanel" aria-labelledby="contact-tab-vertical">
                                 <div class="text-center">
                                     <div class="text-center h1" style="font-family:Pacifico">
@@ -283,142 +135,12 @@
                                 <hr />
                                 <div class="container text-center">
                                     <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                                        <a role="button" class="btn btn-info" href="/Reporting/Vehicle/"><i class="fa fa-car-side"></i> Vehicles</a>
-                                        <a role="button" class="btn btn-dark" href="/Reporting/Claim/"><i class="fa fa-hand-paper-o"></i> Claims</a>
-                                        <a role="button" class="btn btn-success" href="/Reporting/Policy/"><i class="fas fa-vote-yea"></i> Policies</a>
+                                        
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="tab-pane fade" id="policies" role="tabpanel" aria-labelledby="contact-tab-vertical">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <div class="h1" style="font-family:Pacifico">
-                                            Expenses
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="offset-10 col">
-                                        <a href="/Expenses/Create" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i></a>
-                                    </div>
-                                </div>
-                                <div>
-                                    @{
-
-                                        string[] e_ids = ViewBag.expenseIds.Split(':');
-                                        string[] e_dates = ViewBag.expenseDates.Split(':');
-                                        string[] e_types = ViewBag.expenseTypes.Split(':');
-                                    }
-                                    <br />
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Date</th>
-                                                <th>Type</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{
-                                                if (e_ids[0] == "" && e_dates[0] == "" && e_types[0] == "")
-                                                {
-                                                    <tr>
-                                                        <td colspan=4 class="text-center">No expenses found !!</td>
-                                                    </tr>
-                                                }
-                                                else
-                                                {
-                                                    if (e_ids.Length == e_dates.Length && e_dates.Length == e_types.Length)
-                                                    {
-                                                        for (int i = 0; i < e_ids.Length; i++)
-                                                        {
-                                                            <tr>
-                                                                <td>@e_ids[i]</td>
-                                                                <td>@e_dates[i]</td>
-                                                                <td>@e_types[i]</td>
-                                                                <td>
-                                                                    <a href="/Expenses/Details/@e_ids[i]/">View <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        }
-                                                    }
-                                                }
-
-                                            }
-
-                                        </tbody>
-                                    </table>
-                                    <br />
-                                    <a class="float-right mr-4" href="/Vehicleinformations/">View all <i class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="claim-2" role="tabpanel" aria-labelledby="contact-tab-vertical">
-                                <div class="text-center">
-                                    <div class="text-center h1" style="font-family:Pacifico">
-                                        My Claims
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="offset-10 col">
-                                        <a href="/ClaimDetails/Create/" class="btn btn-dark btn-sm float-right"><i class="fas fa-plus"></i></a>
-                                    </div>
-                                </div>
-                                <div>
-                                    @{
-
-                                        string[] c_ids = ViewBag.claimIds.Split(':');
-                                        string[] c_names = ViewBag.claimNumbers.Split(':');
-                                        string[] c_v_names = ViewBag.claimVehicleNames.Split(':');
-                                    }
-                                    <br />
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Id</th>
-                                                <th>Claim Number</th>
-                                                <th>Vehicle</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{
-                                                if (c_ids[0] == "" && c_names[0] == "" && c_v_names[0] == "")
-                                                {
-                                                    <tr>
-                                                        <td colspan=3 class="text-center">No claims found !!</td>
-                                                    </tr>
-                                                }
-                                                else
-                                                {
-                                                    if (c_ids.Length == c_names.Length && c_names.Length == c_v_names.Length)
-                                                    {
-                                                        for (int i = 0; i < c_ids.Length; i++)
-                                                        {
-                                                            <tr>
-                                                                <td>@c_ids[i]</td>
-                                                                <td>@c_names[i]</td>
-                                                                <td>@c_v_names[i]</td>
-                                                                <td>
-                                                                    <a href="/ClaimDetails/Details/@c_ids[i]/">View <i class="fa fa-caret-right" aria-hidden="true"></i></a>
-                                                                </td>
-                                                            </tr>
-                                                        }
-                                                    }
-                                                }
-
-                                            }
-
-                                        </tbody>
-                                    </table>
-                                    <br />
-                                    <a class="float-right mr-4" href="/Vehicleinformations/">View all <i class="fa fa-caret-right"></i></a>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>

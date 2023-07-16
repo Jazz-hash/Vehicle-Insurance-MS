@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebApplication19.Controllers
+namespace CFMS.Controllers
 {
     public class UnauthorizedUserController : Controller
     {

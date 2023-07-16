@@ -1,28 +1,13 @@
 ﻿@model dynamic
-@using WebApplication19.Models;
+@using CFMS.Models;
 @{
     ViewBag.Title = "Dashboard";
 }
 <div class="row">
-
-    @{
-        string[] data = new string[12] {"0","0","0","0","0","0","0","0","0","0","0","0" };
-        string[] v_data = new string[12] {"0","0","0","0","0","0","0","0","0","0","0","0" };
-        if (ViewBag.MonthlyData != "" )
-        {
-            data = ViewBag.MonthlyData.Split(':');
-        }
-        else if(ViewBag.MonthlyVehicleData != "")
-        {
-            v_data = ViewBag.MonthlyVehicleData.Split(':');
-        }
-    }
-</div>
-<div class="row">
     <div class="col-md-6 col-lg-3 grid-margin stretch-card">
         <div class="card shadow-lg">
             <div class="card-body">
-                <h1 class="font-weight-light mb-4" style="font-family:Pacifico;">@ViewBag.CustomersCount</h1>
+                <h1 class="font-weight-light mb-4" style="font-family:Pacifico;">@ViewBag.UserCount</h1>
                 <div class="d-flex flex-wrap align-items-center">
                     <div>
                         <h4 class="font-weight-normal">Users</h4>
@@ -39,13 +24,13 @@
     <div class="col-md-6 col-lg-3 grid-margin stretch-card">
         <div class="card shadow-lg">
             <div class="card-body">
-                <h1 class="font-weight-light mb-4" style="font-family:Pacifico;">$ @ViewBag.ExpensesCount</h1>
+                <h1 class="font-weight-light mb-4" style="font-family:Pacifico;">@ViewBag.CourseFilesGenerated</h1>
                 <div class="d-flex flex-wrap align-items-center">
                     <div>
-                        <h4 class="font-weight-normal">Expenses</h4>
-                        <p class="text-muted mb-0 font-weight-light">Costed</p>
+                        <h4 class="font-weight-normal">Course Files</h4>
+                        <p class="text-muted mb-0 font-weight-light">Generated</p>
                     </div>
-                    <i class="mdi mdi-chart-pie icon-lg text-danger ml-auto"><i class="fa fa-chart-pie"></i></i>
+                    <i class="mdi mdi-chart-pie icon-lg text-success ml-auto"><i class="fa fa-vote-yea"></i></i>
                 </div>
             </div>
         </div>
@@ -53,13 +38,13 @@
     <div class="col-md-6 col-lg-3 grid-margin stretch-card">
         <div class="card shadow-lg">
             <div class="card-body">
-                <h1 class="font-weight-light mb-4" style="font-family:Pacifico;">@ViewBag.VehiclesCount</h1>
+                <h1 class="font-weight-light mb-4" style="font-family:Pacifico;">@ViewBag.CourseFilesPending</h1>
                 <div class="d-flex flex-wrap align-items-center">
                     <div>
-                        <h4 class="font-weight-normal">Vehicle</h4>
-                        <p class="text-muted mb-0 font-weight-light">Registration</p>
+                        <h4 class="font-weight-normal">Course Files</h4>
+                        <p class="text-muted mb-0 font-weight-light">Pending</p>
                     </div>
-                    <i class="mdi mdi-car icon-lg text-info ml-auto"><i class="fas fa-car-side    "></i></i>
+                    <i class="mdi mdi-car icon-lg text-info ml-auto"><i class="fa-solid fa-person-digging"></i></i>
                 </div>
             </div>
         </div>
@@ -67,178 +52,14 @@
     <div class="col-md-6 col-lg-3 grid-margin stretch-card">
         <div class="card shadow-lg">
             <div class="card-body">
-                <h1 class="font-weight-light mb-4" style="font-family:Pacifico;">@ViewBag.CustomerPoliciesCount</h1>
+                <h1 class="font-weight-light mb-4" style="font-family:Pacifico;">@ViewBag.CourseFilesLeft</h1>
                 <div class="d-flex flex-wrap align-items-center">
                     <div>
-                        <h4 class="font-weight-normal">Verified</h4>
-                        <p class="text-muted mb-0 font-weight-light">Policies</p>
+                        <h4 class="font-weight-normal">Course Files</h4>
+                        <p class="text-muted mb-0 font-weight-light">Left</p>
                     </div>
-                    <i class="mdi mdi-verified icon-lg text-success ml-auto"><i class="fas fa-vote-yea    "></i></i>
+                    <i class="mdi mdi-verified icon-lg text-danger ml-auto"><i class="fas fa-chart-pie    "></i></i>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-7 grid-margin stretch-card">
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <div class="d-flex align-items-start justify-content-between">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4 class="card-title" style="font-family:Pacifico;font-size:35px;">Policy Registrations</h4>
-                        </div>
-                    </div>
-                    <div class="row float-right">
-                        <div class="col-12">
-                            <a href="/CustomerPolicyRecords/" class="btn btn-dark btn-sm float-right">
-                                <i class="fas fa-binoculars"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div id="statistics-legend" class="chartjs-legend mt-2 mb-4"></div>
-                <canvas id="statistics-chart"></canvas>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-5 grid-margin stretch-card">
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <div class="d-flex align-items-start justify-content-between">
-                    <div class="row">
-                        <div class="col-12">
-                            <h4 class="card-title" style="font-family:Pacifico;font-size:35px;">Billing Informations</h4>
-                        </div>
-                    </div>
-                    <div class="row float-right">
-                        <div class="col-12">
-                            <a href="/CustomerBillingInformations/" class="btn btn-dark btn-sm float-right">
-                                <i class="fas fa-binoculars"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <canvas id="traffic-chart" class="mt-2" style="height:400px !important;"></canvas>
-                <div class="d-flex mt-5 mb-0 align-items-center">
-                    <div id="traffic-legend" class="chartjs-legend traffic-legend mr-4"></div>
-                    <h3 class="mb-0 font-weight-normal">@ViewBag.CountPolicy</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6 grid-margin stretch-card">
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <div class="d-flex align-items-start justify-content-between">
-                    <div class="row">
-                        <div class="col-12">
-                            <h1 class="card-title" style="font-family:Pacifico;font-size:35px;">Policies we provide !!</h1>
-                        </div>
-                    </div>
-                    <div class="row float-right">
-                        <div class="col-12">
-                            <a href="/PolicyTypes/" class="btn btn-dark btn-sm float-right">
-                                <i class="fas fa-binoculars"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                @foreach (var item in Model.Policies)
-                {
-                    <div class="preview-list">
-                        <div class="preview-item pt-0">
-                            <div class="preview-item-content flex-grow-1">
-                                <h6 style="font-weight:bold">@item.Type</h6>
-                                <p class="text-muted font-weight-light mb-0">@item.Description</p>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 grid-margin stretch-card">
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-10">
-                        <h4 class="card-title" style="font-family:Pacifico;font-size:35px;">Vehicle Information</h4>
-                    </div>
-                    <div class="col-2">
-                        <a href="/ClaimDetails/" class="btn btn-dark btn-sm float-right">
-                            <i class="fas fa-binoculars"></i>
-                        </a>
-                    </div>
-                </div>
-                @*<canvas id="analysis-chart"></canvas>*@
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Id</th>
-                                <th>Claim Number</th>
-                                <th>Claimed By</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Claims)
-                            {
-                                <tr>
-                                    <td>@item.ClaimDetailId</td>
-                                    <td>@item.ClaimNumber</td>
-                                    <td>@item.CustomerPolicyRecord.ApplicationUser.Name</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12 grid-margin stretch-card">
-        <div class="card shadow-lg">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-10">
-                        <h4 class="card-title" style="font-family:Pacifico;font-size:35px;">Vehicle Information</h4>
-                    </div>
-                    <div class="col-2">
-                        <a href="/VehicleInformations/" class="btn btn-dark btn-sm float-right">
-                            <i class="fas fa-binoculars"></i>
-                        </a>
-                    </div>
-                </div>
-                @*<canvas id="analysis-chart"></canvas>*@
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Id</th>
-                                <th>Company</th>
-                                <th>Name</th>
-                                <th>Model</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Vehicles)
-                            {
-                                <tr>
-                                    <td>@item.VehicleInformationId</td>
-                                    <td>@item.VehicleCompany</td>
-                                    <td>@item.VehicleName</td>
-                                    <td>@item.VehicleModel</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-
             </div>
         </div>
     </div>
@@ -246,173 +67,5 @@
 
 @section Scripts {
     <script>
-        if ($("#traffic-chart").length) {
-            var trafficData = {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    //data: [0, 2, 9, 6, 1, 5, 7, 2],
-                    data: [@data[0], @data[1], @data[2], @data[3], @data[4], @data[5], @data[6], @data[7], @data[8], @data[9], @data[10], @data[11]],
-                    backgroundColor: [
-                        '#fc5661'
-                    ],
-                    borderColor: [
-                        '#fc5661'
-                    ],
-                    borderWidth: 3,
-                    fill: 'false',
-                    label: "applications"
-                }
-                ]
-            };
-            var trafficOptions = {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    filler: {
-                        propagate: false
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        ticks: {
-                            display: true
-                        },
-                        gridLines: {
-                            display: false,
-                            drawBorder: false,
-                            color: 'transparent',
-                            zeroLineColor: '#eeeeee'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            display: true,
-                            autoSkip: false,
-                            maxRotation: 0,
-                            stepSize: 1,
-                            min: 0,
-                            max: 10
-                        },
-                        gridLines: {
-                            drawBorder: false
-                        }
-                    }]
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    enabled: true
-                },
-                elements: {
-                    line: {
-                        tension: 0
-                    },
-                    point: {
-                        radius: 0
-                    }
-                }
-            }
-            var trafficChartCanvas = $("#traffic-chart").get(0).getContext("2d");
-            var trafficChart = new Chart(trafficChartCanvas, {
-                type: 'line',
-                data: trafficData,
-                options: trafficOptions
-            });
-            document.getElementById('traffic-legend').innerHTML = trafficChart.generateLegend();
-        }
-        if ($("#statistics-chart").length) {
-            var areaData = {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug","Sep","Oct","Nov","Dec"],
-                datasets: [{
-                    data: [@v_data[0], @v_data[1], @v_data[2], @v_data[3], @v_data[4], @v_data[5], @v_data[6], @v_data[7], @v_data[8], @v_data[9], @v_data[10], @v_data[11]],
-                    backgroundColor: [
-                        'rgba(68, 81, 158, .78)'
-                    ],
-                    borderColor: [
-                        'rgba(68, 81, 158, .78)'
-                    ],
-                    fillOpacity: .3,
-                    borderWidth: 1,
-                    fill: 'origin',
-                    label: "vehicle registrations"
-                },
-                {
-                    data: [@data[0], @data[1], @data[2], @data[3], @data[4], @data[5], @data[6], @data[7], @data[8], @data[9], @data[10], @data[11]],
-                    backgroundColor: [
-                        '#fc5661'
-                    ],
-                    borderColor: [
-                        '#fc5661'
-                    ],
-                    Opacity: .3,
-                    borderWidth: 1,
-                    fill: 'origin',
-                    label: "policy applications"
-                }
-                ]
-            };
-            var areaOptions = {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    filler: {
-                        propagate: false
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        ticks: {
-                            display: true
-                        },
-                        gridLines: {
-                            display: false,
-                            drawBorder: false,
-                            color: 'transparent',
-                            zeroLineColor: '#eeeeee'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        ticks: {
-                            display: true,
-                            autoSkip: false,
-                            maxRotation: 0,
-                            stepSize: 1,
-                            min: 0,
-                            max: 10
-                        },
-                        gridLines: {
-                            drawBorder: false
-                        }
-                    }]
-                },
-                legend: {
-                    display: false
-                },
-                tooltips: {
-                    enabled: true
-                },
-                elements: {
-                    line: {
-                        tension: .25
-                    },
-                    point: {
-                        radius: 0
-                    }
-                }
-            }
-            var salesChartCanvas = $("#statistics-chart").get(0).getContext("2d");
-            var salesChart = new Chart(salesChartCanvas, {
-                type: 'line',
-                data: areaData,
-                options: areaOptions
-            });
-            document.getElementById('statistics-legend').innerHTML = salesChart.generateLegend();
-        }
-
     </script>
 }
